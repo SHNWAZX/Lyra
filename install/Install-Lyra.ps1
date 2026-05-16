@@ -7,7 +7,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$expectedThumbprint = "AA08EF070322DFFA862B37F4F6A79AB945ACFB54"
+$expectedSubject = "CN=Lyra"
 
 function Test-IsAdministrator {
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
@@ -48,8 +48,12 @@ Unblock-File -LiteralPath $DotNetRuntimeInstallerPath -ErrorAction SilentlyConti
 Unblock-File -LiteralPath $WindowsAppRuntimeInstallerPath -ErrorAction SilentlyContinue
 
 $certificate = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($CertificatePath)
-if ($certificate.Thumbprint -ne $expectedThumbprint) {
-    throw "Certificate thumbprint mismatch. Expected $expectedThumbprint but found $($certificate.Thumbprint)."
+if ($certificate.Subject -ne $expectedSubject) {
+    throw "Certificate subject mismatch. Expected $expectedSubject but found $($certificate.Subject)."
+}
+
+if ($certificate.NotAfter -lt (Get-Date)) {
+    throw "Certificate has expired. Certificate expired on $($certificate.NotAfter)."
 }
 
 function Test-DotNet10Runtime {
