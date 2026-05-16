@@ -14,7 +14,21 @@ function Test-IsAdministrator {
 }
 
 if (-not (Test-IsAdministrator)) {
-    throw "Run this script from an elevated PowerShell window: right-click PowerShell and choose 'Run as administrator'."
+    $arguments = @(
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "`"$PSCommandPath`"",
+        "-PackagePath",
+        "`"$PackagePath`"",
+        "-CertificatePath",
+        "`"$CertificatePath`""
+    )
+
+    Write-Host "Requesting administrator permission to trust the Lyra certificate..."
+    Start-Process -FilePath "powershell.exe" -ArgumentList $arguments -Verb RunAs -Wait
+    exit $LASTEXITCODE
 }
 
 $PackagePath = (Resolve-Path -LiteralPath $PackagePath).Path

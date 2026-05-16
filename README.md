@@ -10,7 +10,9 @@ The `Lyra Build` GitHub Actions workflow builds the Windows x64 sideload package
 
 ## Install
 
-Download the `.msixbundle`, `.cer`, and `Install-Lyra.ps1` files from the latest release into the same folder. Open PowerShell as Administrator and run:
+Download `Lyra-Setup.exe` from the latest release and run it. The setup EXE imports the Lyra certificate and installs the MSIX bundle.
+
+If you prefer the manual path, download the `.msixbundle`, `.cer`, and `Install-Lyra.ps1` files from the latest release into the same folder, then run:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\Install-Lyra.ps1 -PackagePath .\Lyra_4.1.1.0_x64.msixbundle -CertificatePath .\Lyra_4.1.1.0_x64.cer
