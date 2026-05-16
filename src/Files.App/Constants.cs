@@ -194,15 +194,15 @@ namespace Files.App
 
 		public static class ExternalUrl
 		{
-			public const string GitHubRepoUrl = @"https://github.com/files-community/Files";
-			public const string DocumentationUrl = @"https://files.community/docs";
-			public const string DiscordUrl = @"https://discord.gg/files";
-			public const string FeatureRequestUrl = @"https://github.com/files-community/Files/issues/new?labels=feature+request&template=feature_request.yml";
-			public const string BugReportUrl = @"https://github.com/files-community/Files/issues/new?labels=bug&template=bug_report.yml";
-			public const string PrivacyPolicyUrl = @"https://files.community/privacy";
-			public const string SupportUsUrl = @"https://github.com/files-community/Files?sponsor";
-			public const string CrowdinUrl = @"https://crowdin.com/project/files-app";
-			public static readonly string ReleaseNotesUrl = $"https://files.community/blog/posts/v{Package.Current.Id.Version.Major}-{Package.Current.Id.Version.Minor}-{Package.Current.Id.Version.Build}?minimal";
+			public const string GitHubRepoUrl = @"https://github.com/SHNWAZX/Lyra";
+			public const string DocumentationUrl = @"https://github.com/SHNWAZX/Lyra#readme";
+			public const string DiscordUrl = @"https://github.com/SHNWAZX/Lyra/discussions";
+			public const string FeatureRequestUrl = @"https://github.com/SHNWAZX/Lyra/issues/new?labels=feature+request";
+			public const string BugReportUrl = @"https://github.com/SHNWAZX/Lyra/issues/new?labels=bug";
+			public const string PrivacyPolicyUrl = @"https://github.com/SHNWAZX/Lyra";
+			public const string SupportUsUrl = @"https://github.com/SHNWAZX";
+			public const string CrowdinUrl = @"https://github.com/SHNWAZX/Lyra";
+			public const string ReleaseNotesUrl = @"https://github.com/SHNWAZX/Lyra/releases/latest";
 		}
 
 		public static class DocsPath
