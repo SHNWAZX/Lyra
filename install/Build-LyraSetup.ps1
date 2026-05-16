@@ -1,7 +1,9 @@
 param(
     [string]$OutputPath = (Join-Path $PSScriptRoot "Lyra-Setup.exe"),
     [string]$PackagePath = (Join-Path $PSScriptRoot "..\artifacts-download\Lyra_4.1.1.0_x64.msixbundle"),
-    [string]$CertificatePath = (Join-Path $PSScriptRoot "..\artifacts-download\Lyra_4.1.1.0_x64.cer")
+    [string]$CertificatePath = (Join-Path $PSScriptRoot "..\artifacts-download\Lyra_4.1.1.0_x64.cer"),
+    [string]$DotNetRuntimeInstallerPath = (Join-Path $PSScriptRoot "..\artifacts-download\deps\dotnet-runtime-10.0.8-win-x64.exe"),
+    [string]$WindowsAppRuntimeInstallerPath = (Join-Path $PSScriptRoot "..\artifacts-download\deps\windowsappruntimeinstall-x64.exe")
 )
 
 $ErrorActionPreference = "Stop"
@@ -15,6 +17,8 @@ if (-not (Test-Path -LiteralPath $sevenZip) -or -not (Test-Path -LiteralPath $sf
 $OutputPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputPath)
 $PackagePath = (Resolve-Path -LiteralPath $PackagePath).Path
 $CertificatePath = (Resolve-Path -LiteralPath $CertificatePath).Path
+$DotNetRuntimeInstallerPath = (Resolve-Path -LiteralPath $DotNetRuntimeInstallerPath).Path
+$WindowsAppRuntimeInstallerPath = (Resolve-Path -LiteralPath $WindowsAppRuntimeInstallerPath).Path
 $installerScriptPath = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "Install-Lyra.ps1")).Path
 
 $buildDir = Join-Path ([System.IO.Path]::GetTempPath()) ("lyra-setup-" + [guid]::NewGuid().ToString("N"))
@@ -23,12 +27,14 @@ New-Item -ItemType Directory -Path $buildDir | Out-Null
 try {
     Copy-Item -LiteralPath $PackagePath -Destination (Join-Path $buildDir "Lyra_4.1.1.0_x64.msixbundle")
     Copy-Item -LiteralPath $CertificatePath -Destination (Join-Path $buildDir "Lyra_4.1.1.0_x64.cer")
+    Copy-Item -LiteralPath $DotNetRuntimeInstallerPath -Destination (Join-Path $buildDir "dotnet-runtime-10.0.8-win-x64.exe")
+    Copy-Item -LiteralPath $WindowsAppRuntimeInstallerPath -Destination (Join-Path $buildDir "windowsappruntimeinstall-x64.exe")
     Copy-Item -LiteralPath $installerScriptPath -Destination (Join-Path $buildDir "Install-Lyra.ps1")
 
     $archivePath = Join-Path $buildDir "payload.7z"
     Push-Location $buildDir
     try {
-        & $sevenZip a -t7z $archivePath "Lyra_4.1.1.0_x64.msixbundle" "Lyra_4.1.1.0_x64.cer" "Install-Lyra.ps1" | Out-Host
+        & $sevenZip a -t7z $archivePath "Lyra_4.1.1.0_x64.msixbundle" "Lyra_4.1.1.0_x64.cer" "dotnet-runtime-10.0.8-win-x64.exe" "windowsappruntimeinstall-x64.exe" "Install-Lyra.ps1" | Out-Host
     }
     finally {
         Pop-Location

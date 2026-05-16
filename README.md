@@ -10,7 +10,7 @@ The `Lyra Build` GitHub Actions workflow builds the Windows x64 sideload package
 
 ## Install
 
-Download `Lyra-Setup.exe` from the latest release and run it. The setup EXE imports the Lyra certificate and installs the MSIX bundle.
+Download `Lyra-Setup.exe` from the latest release and run it. The setup EXE installs the needed runtimes, imports the Lyra certificate, installs the MSIX bundle, and launches Lyra.
 
 If you prefer the manual path, download the `.msixbundle`, `.cer`, and `Install-Lyra.ps1` files from the latest release into the same folder, then run:
 
