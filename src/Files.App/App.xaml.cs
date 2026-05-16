@@ -139,7 +139,7 @@ namespace Files.App
 						SystemTrayIcon.Show();
 
 					// Sleep current instance
-					Program.Pool = new(0, 1, $"Files-{AppLifecycleHelper.AppEnvironment}-Instance");
+					Program.Pool = new(0, 1, $"Lyra-{AppLifecycleHelper.AppEnvironment}-Instance");
 
 					Thread.Yield();
 
@@ -235,7 +235,7 @@ namespace Files.App
 			// Continue running the app on the background
 			if (userSettingsService.GeneralSettingsService.LeaveAppRunning &&
 				!AppModel.ForceProcessTermination &&
-				!Process.GetProcessesByName("Files").Any(x => x.Id != Environment.ProcessId))
+				!Process.GetProcessesByName("Lyra").Any(x => x.Id != Environment.ProcessId))
 			{
 				// Close open content dialogs
 				UIHelpers.CloseAllDialogs();
@@ -254,7 +254,7 @@ namespace Files.App
 				await FilePropertiesHelpers.WaitClosingAll();
 
 				// Sleep current instance
-				Program.Pool = new(0, 1, $"Files-{AppLifecycleHelper.AppEnvironment}-Instance");
+				Program.Pool = new(0, 1, $"Lyra-{AppLifecycleHelper.AppEnvironment}-Instance");
 
 				Thread.Yield();
 

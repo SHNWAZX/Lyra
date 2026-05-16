@@ -14,13 +14,13 @@
     IgnorableNamespaces="mp rescap desktop desktop4 desktop6 uap uap5">
 
     <Identity
-        Name="FilesDev"
-        Publisher="CN=Files"
+        Name="LyraDev"
+        Publisher="CN=Lyra"
         Version="4.1.1.0" />
 
     <Properties>
-        <DisplayName>Files - Dev</DisplayName>
-        <PublisherDisplayName>Yair A</PublisherDisplayName>
+        <DisplayName>Lyra</DisplayName>
+        <PublisherDisplayName>SHNWAZX</PublisherDisplayName>
         <Logo>Assets\AppTiles\Dev\StoreLogo.png</Logo>
         <desktop6:FileSystemWriteVirtualization>disabled</desktop6:FileSystemWriteVirtualization>
     </Properties>
@@ -89,8 +89,8 @@
             desktop4:SupportsMultipleInstances="true">
 
             <uap:VisualElements
-                DisplayName="Files - Dev"
-                Description="Organize your files and folders easily. Robust multitasking experiences, helpful tags, and deep integrations add to an intuitive design, made by the community."
+                DisplayName="Lyra"
+                Description="Organize your files and folders easily with Lyra."
                 Square150x150Logo="Assets\AppTiles\Dev\Square150x150Logo.png"
                 Square44x44Logo="Assets\AppTiles\Dev\Square44x44Logo.png"
                 BackgroundColor="transparent">
@@ -99,7 +99,7 @@
                     Wide310x150Logo="Assets\AppTiles\Dev\Wide310x150Logo.png"
                     Square71x71Logo="Assets\AppTiles\Dev\Small71x71Logo.png"
                     Square310x310Logo="Assets\AppTiles\Dev\Large310x310Logo.png"
-                    ShortName="Files - Dev">
+                    ShortName="Lyra">
                     <uap:ShowNameOnTiles>
                         <uap:ShowOn Tile="square150x150Logo" />
                         <uap:ShowOn Tile="wide310x150Logo" />
@@ -120,14 +120,12 @@
                 </uap3:Extension>
 
                 <uap:Extension Category="windows.protocol">
-                    <!--  This value changes based on the build branch by CI (files-stable, files-preview, files-dev).  -->
-                    <uap:Protocol ReturnResults="none" Name="files-dev" />
+                    <uap:Protocol ReturnResults="none" Name="lyra" />
                 </uap:Extension>
 
                 <uap5:Extension Category="windows.appExecutionAlias">
                     <uap5:AppExecutionAlias>
-                        <!--  This value changes based on the build branch by CI (files-stable, files-preview, files-dev).  -->
-                        <uap5:ExecutionAlias Alias="files-dev.exe" />
+                        <uap5:ExecutionAlias Alias="lyra.exe" />
                     </uap5:AppExecutionAlias>
                 </uap5:Extension>
 
@@ -135,7 +133,7 @@
                     <uap5:StartupTask
                       TaskId="3AA55462-A5FA-4933-88C4-712D0B6CDEBB"
                       Enabled="false"
-                      DisplayName="Files" />
+                      DisplayName="Lyra" />
                 </uap5:Extension>
 
                 <Extension Category="windows.updateTask" EntryPoint="Files.App.BackgroundTasks.UpdateTask" />

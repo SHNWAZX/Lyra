@@ -65,16 +65,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	LocalFree(szArglist);
 
 	WCHAR szBuf[MAX_PATH];
-	ExpandEnvironmentStringsW(L"%LOCALAPPDATA%\\Microsoft\\WindowsApps\\files-dev.exe", szBuf, MAX_PATH - 1);
+	ExpandEnvironmentStringsW(L"%LOCALAPPDATA%\\Microsoft\\WindowsApps\\lyra.exe", szBuf, MAX_PATH - 1);
 	std::wcout << szBuf << std::endl;
 	if (_waccess(szBuf, 0) == -1)
 	{
-		std::cout << "Files has been uninstalled" << std::endl;
+		std::cout << "Lyra has been uninstalled" << std::endl;
 
 		MessageBox(
 			NULL,
-			(LPCWSTR)L"Files has been uninstalled. Restoring File Explorer.",
-			(LPCWSTR)L"Files",
+			(LPCWSTR)L"Lyra has been uninstalled. Restoring File Explorer.",
+			(LPCWSTR)L"Lyra",
 			(UINT)(MB_OK)
 		);
 
@@ -111,7 +111,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 
 		// Register the window class.
-		const wchar_t CLASS_NAME[] = L"Files Window Class";
+		const wchar_t CLASS_NAME[] = L"Lyra Window Class";
 
 		WNDCLASSEX wcex = { };
 		wcex.cbSize = sizeof(wcex);
@@ -127,7 +127,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		HWND hwnd = CreateWindowEx(
 			0,
 			CLASS_NAME,
-			L"Files Launcher",
+			L"Lyra Launcher",
 			0,
 			0, 0, 0, 0,
 			HWND_MESSAGE,
@@ -172,7 +172,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			swprintf(args, _countof(args) - 1, L"\"%s\" -select \"%s\"", szBuf, item.c_str());
 		}
 
-		std::wstring uriWithArgs = L"files-dev:?cmd=" + str2wstr(wstring_to_utf8_hex(args));
+		std::wstring uriWithArgs = L"lyra:?cmd=" + str2wstr(wstring_to_utf8_hex(args));
 
 		std::wcout << L"Invoking: " << args << L" = " << uriWithArgs << std::endl;
 
@@ -187,7 +187,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		{
 			std::wcout << L"Protocol error: " << GetLastError() << std::endl;
 
-			//ShExecInfo.lpFile = L"files-dev.exe";
+			//ShExecInfo.lpFile = L"lyra.exe";
 			//ShExecInfo.lpParameters = args;
 			//if (!ShellExecuteEx(&ShExecInfo))
 			//{
@@ -202,13 +202,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		SHELLEXECUTEINFO ShExecInfo = { 0 };
 		ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
 		ShExecInfo.fMask = SEE_MASK_NOASYNC | SEE_MASK_FLAG_NO_UI;
-		ShExecInfo.lpFile = L"files-dev:";
+		ShExecInfo.lpFile = L"lyra:";
 		ShExecInfo.nShow = SW_SHOW;
 
 		if (!ShellExecuteEx(&ShExecInfo))
 		{
 			std::wcout << L"Protocol error: " << GetLastError() << std::endl;
-			//ShExecInfo.lpFile = L"files-dev.exe";
+			//ShExecInfo.lpFile = L"lyra.exe";
 			//if (!ShellExecuteEx(&ShExecInfo))
 			//{
 				//std::wcout << L"Command line error: " << GetLastError() << std::endl;

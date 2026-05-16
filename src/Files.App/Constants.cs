@@ -273,7 +273,7 @@ namespace Files.App
 				"FilesStable", // sideload stable
 				"FilesPreview", // sideload preview
 				"49306atecsolution.FilesPreview", // store preview
-				"FilesDev", // dev
+				"LyraDev", // Lyra dev
 			};
 		}
 
@@ -281,8 +281,8 @@ namespace Files.App
 		{
 			// These strings are intentionally hardcoded and cannot be moved to resource files.
 			// The Windows App Runtime (which powers the resource loading system) may itself be unavailable at this point
-			public const string MissingRuntimeMessage = "Files failed to start. A required Windows component could not be loaded. Try reinstalling Files from the Microsoft Store or from https://files.community/download";
-			public const string MissingRuntimeTitle = "Files - Startup Error";
+			public const string MissingRuntimeMessage = "Lyra failed to start. A required Windows component could not be loaded. Try reinstalling Lyra.";
+			public const string MissingRuntimeTitle = "Lyra - Startup Error";
 		}
 	}
 }

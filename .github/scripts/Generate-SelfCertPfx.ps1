@@ -8,8 +8,8 @@ param(
     [string]$Destination = ""
 )
 
-$CertFriendlyName = "FilesApp_SelfSigned"
-$CertPublisher = "CN=Files"
+$CertFriendlyName = "LyraApp_SelfSigned"
+$CertPublisher = "CN=Lyra"
 $CertStoreLocation = "Cert:\CurrentUser\My"
 
 # Generate self signed cert

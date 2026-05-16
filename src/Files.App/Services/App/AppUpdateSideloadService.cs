@@ -142,7 +142,7 @@ namespace Files.App.Services
 					try
 					{
 						var branch = await File.ReadAllTextAsync(branchFilePath, Encoding.UTF8);
-						if (!string.Equals(branch.Trim(), "files-dev", StringComparison.OrdinalIgnoreCase))
+						if (!string.Equals(branch.Trim(), "lyra", StringComparison.OrdinalIgnoreCase))
 							return;
 					}
 					catch { }
@@ -152,7 +152,7 @@ namespace Files.App.Services
 					try
 					{
 						// Create branch file for users updating from versions earlier than v4.0.20.
-						await File.WriteAllTextAsync(branchFilePath, "files-dev", Encoding.UTF8);
+						await File.WriteAllTextAsync(branchFilePath, "lyra", Encoding.UTF8);
 					}
 					catch { }
 				}

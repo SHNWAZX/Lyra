@@ -372,14 +372,14 @@ namespace Files.App.Helpers
 			if (string.IsNullOrWhiteSpace(path))
 				return Task.FromResult(false);
 
-			var folderUri = new Uri($"files-dev:?folder={Uri.EscapeDataString(path)}");
+			var folderUri = new Uri($"lyra:?folder={Uri.EscapeDataString(path)}");
 
 			return Launcher.LaunchUriAsync(folderUri).AsTask();
 		}
 
 		public static Task<bool> OpenTabInNewWindowAsync(string tabArgs)
 		{
-			var folderUri = new Uri($"files-dev:?tab={Uri.EscapeDataString(tabArgs)}");
+			var folderUri = new Uri($"lyra:?tab={Uri.EscapeDataString(tabArgs)}");
 			return Launcher.LaunchUriAsync(folderUri).AsTask();
 		}
 
@@ -393,7 +393,7 @@ namespace Files.App.Helpers
 
 		public static Task LaunchNewWindowAsync()
 		{
-			return Launcher.LaunchUriAsync(new Uri("files-dev:?window=")).AsTask();
+			return Launcher.LaunchUriAsync(new Uri("lyra:?window=")).AsTask();
 		}
 
 		public static async Task OpenSelectedItemsAsync(IShellPage associatedInstance, bool openViaApplicationPicker = false)
