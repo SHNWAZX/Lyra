@@ -1,5 +1,5 @@
 param(
-    [string]$OutputPath = (Join-Path $PSScriptRoot "Lyra-Setup.exe"),
+    [string]$OutputPath = (Join-Path $PSScriptRoot "Lyra.exe"),
     [string]$PackagePath = (Join-Path $PSScriptRoot "..\artifacts-download\Lyra_4.1.1.0_x64.msixbundle"),
     [string]$CertificatePath = (Join-Path $PSScriptRoot "..\artifacts-download\Lyra_4.1.1.0_x64.cer"),
     [string]$DotNetRuntimeInstallerPath = (Join-Path $PSScriptRoot "..\artifacts-download\deps\dotnet-runtime-10.0.8-win-x64.exe"),
@@ -11,7 +11,7 @@ $ErrorActionPreference = "Stop"
 $sevenZip = "${env:ProgramFiles}\7-Zip\7z.exe"
 $sfxModule = "${env:ProgramFiles}\7-Zip\7z.sfx"
 if (-not (Test-Path -LiteralPath $sevenZip) -or -not (Test-Path -LiteralPath $sfxModule)) {
-    throw "7-Zip with 7z.sfx is required to build Lyra-Setup.exe."
+    throw "7-Zip with 7z.sfx is required to build Lyra.exe."
 }
 
 $OutputPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputPath)
@@ -21,7 +21,7 @@ $DotNetRuntimeInstallerPath = (Resolve-Path -LiteralPath $DotNetRuntimeInstaller
 $WindowsAppRuntimeInstallerPath = (Resolve-Path -LiteralPath $WindowsAppRuntimeInstallerPath).Path
 $installerScriptPath = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "Install-Lyra.ps1")).Path
 
-$buildDir = Join-Path ([System.IO.Path]::GetTempPath()) ("lyra-setup-" + [guid]::NewGuid().ToString("N"))
+$buildDir = Join-Path ([System.IO.Path]::GetTempPath()) ("lyra-exe-" + [guid]::NewGuid().ToString("N"))
 New-Item -ItemType Directory -Path $buildDir | Out-Null
 
 try {
@@ -42,8 +42,7 @@ try {
 
     $config = @"
 ;!@Install@!UTF-8!
-Title="Lyra Setup"
-BeginPrompt="Install Lyra?"
+Title="Lyra"
 RunProgram="powershell.exe -NoProfile -ExecutionPolicy Bypass -File Install-Lyra.ps1"
 ;!@InstallEnd@!
 "@
