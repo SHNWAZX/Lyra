@@ -7,3 +7,11 @@ This repository keeps the original MIT license and upstream copyright notices in
 ## Build
 
 The `Lyra Build` GitHub Actions workflow builds the Windows x64 sideload package and uploads it as the `Lyra-x64-package` artifact. The packaged app executable is generated as `Lyra.exe`.
+
+## Install
+
+Download the `.msixbundle`, `.cer`, and `Install-Lyra.ps1` files from the latest release into the same folder. Open PowerShell as Administrator and run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Install-Lyra.ps1 -PackagePath .\Lyra_4.1.1.0_x64.msixbundle -CertificatePath .\Lyra_4.1.1.0_x64.cer
+```
